@@ -1,0 +1,35 @@
+# Python/runtime
+.venv/
+.venv_*/
+__pycache__/
+*.py[cod]
+
+# Generated training and inference artifacts
+runs/
+datasets/
+PPE/
+专业照片/
+
+# Large model/data artifacts
+*.pt
+*.pth
+*.onnx
+*.engine
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.exe
+*.jpg
+*.jpeg
+*.png
+*.bmp
+*.mp4
+*.avi
+*.mov
+
+# Local/temporary files
+nul
+*.tmp
+*.log

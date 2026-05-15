@@ -1,0 +1,9 @@
+names:
+  0: track
+  1: defect
+  2: fastener
+nc: 3
+path: E:\yolo\datasets\custom_dataset
+test: images/test
+train: images/train
+val: images/val

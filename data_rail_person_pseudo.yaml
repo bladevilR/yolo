@@ -1,0 +1,7 @@
+path: E:/yolo/datasets/rail_person_pseudo_dataset
+train: images/train
+val: images/val
+test: images/test
+nc: 1
+names:
+  0: person
