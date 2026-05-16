@@ -1,4 +1,4 @@
-path: E:/yolo/datasets/rail_person_pseudo_dataset
+path: M:/yolo/datasets/rail_person_pseudo_dataset
 train: images/train
 val: images/val
 test: images/test
