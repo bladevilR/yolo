@@ -1,0 +1,12 @@
+path: M:/yolo/datasets/station_ppe_20260515_v0
+train: images/train
+val: images/val
+test: images/test
+nc: 6
+names:
+  0: person
+  1: head
+  2: helmet
+  3: vest
+  4: no_helmet
+  5: no_vest
