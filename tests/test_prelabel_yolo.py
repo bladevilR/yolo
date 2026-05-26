@@ -2,7 +2,12 @@ import unittest
 
 from pathlib import Path
 
-from data_factory.prelabel_yolo import map_model_class_to_target, target_label_path, yolo_line
+from data_factory.prelabel_yolo import (
+    map_model_class_to_target,
+    parse_optional_classes,
+    target_label_path,
+    yolo_line,
+)
 
 
 class PrelabelYoloTests(unittest.TestCase):
@@ -11,8 +16,11 @@ class PrelabelYoloTests(unittest.TestCase):
 
         self.assertEqual(map_model_class_to_target("Person", target), 0)
         self.assertEqual(map_model_class_to_target("Hardhat", target), 2)
+        self.assertEqual(map_model_class_to_target("Hard Hat", target), 2)
         self.assertEqual(map_model_class_to_target("Helmet", target), 2)
+        self.assertEqual(map_model_class_to_target("Safety Helmet", target), 2)
         self.assertEqual(map_model_class_to_target("Safety Vest", target), 3)
+        self.assertEqual(map_model_class_to_target("Reflective Vest", target), 3)
         self.assertEqual(map_model_class_to_target("NO-Hardhat", target), 4)
         self.assertEqual(map_model_class_to_target("NO-Safety Vest", target), 5)
 
@@ -34,6 +42,11 @@ class PrelabelYoloTests(unittest.TestCase):
             ),
             Path("dataset/pseudo_labels/train/a.txt"),
         )
+
+    def test_parse_optional_classes_accepts_empty_and_comma_list(self):
+        self.assertIsNone(parse_optional_classes(None))
+        self.assertIsNone(parse_optional_classes("  "))
+        self.assertEqual(parse_optional_classes("person, hard hat, safety vest"), ["person", "hard hat", "safety vest"])
 
 
 if __name__ == "__main__":

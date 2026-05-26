@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI质监现场照片清晰复核版</title>
+  <style>
+    body { margin:0; font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif; background:#f4f6f8; color:#16202a; }
+    header { background:#17212b; color:white; padding:34px 44px; }
+    header h1 { margin:0 0 10px; font-size:30px; }
+    header p { max-width:1120px; line-height:1.75; margin:6px 0; }
+    main { max-width:1220px; margin:0 auto; padding:26px 22px 60px; }
+    .lead { background:white; border:1px solid #d8dee6; border-radius:8px; padding:18px 22px; line-height:1.8; }
+    h2 { margin:28px 0 14px; font-size:23px; color:#173b5c; }
+    .card { background:white; border:1px solid #d9e0e8; border-radius:8px; padding:18px; margin:16px 0 26px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .card h3 { margin:0 0 6px; font-size:20px; }
+    .card.red h3 { color:#b92d24; }
+    .card.yellow h3 { color:#a85f05; }
+    .card.green h3 { color:#22704d; }
+    .sub { margin:0 0 8px; font-weight:700; }
+    ul { line-height:1.75; margin:8px 0 14px 22px; }
+    img { width:100%; height:auto; display:block; border-radius:6px; border:1px solid #e2e7ef; }
+    .rule { font-size:14px; color:#55616f; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>AI质监现场照片清晰复核版</h1>
+  <p>这版按“人能看懂”重做：套筒不做数量清点，只判断连接状态、露丝风险、是否需要补拍；每张图都给大结论、粗框和局部放大。</p>
+  <p>生成时间：2026-05-25。当前结论用于会议评估和样板验收，不替代正式质量验收记录。</p>
+</header>
+<main>
+  <section class="lead">
+    <h2>先说结论</h2>
+    <p><b>套筒：</b>这组图不应做“数量清点”。5张里，0019像单端/未完整连接，0020和0022太远只能定位，0021和0023近景较清楚且有疑似露丝偏多风险，适合做第一版异常预警样本。</p>
+    <p><b>钢筋点数：</b>只有端面图0026适合做这个场景；旧算法只输出5个点位已撤销，新版圈出端面候选点，但仍需人工点核/补充标注后才能作为验收数量。其他侧面/遮挡图直接判为拍照不合格。</p>
+    <p><b>混凝土面：</b>当前只能做表观疑似位置提醒，不能直接判蜂窝、麻面、裂缝等正式缺陷；需要近景、比例尺/靠尺和构件编号配合。</p>
+    <p class="rule">默认规范口径：套筒露丝按JGJ 107-2016相关公开摘录的“单侧外露螺纹不宜超过2p”作为预警线；混凝土外观类别参考GB 50204-2015现浇结构外观质量缺陷分类。</p>
+  </section>
+
+  <section>
+    <h2>一、钢筋套筒连接状态，不做数量清点</h2>
+    
+        <article class="card yellow">
+          <h3>field-qc-0019｜不可作为完整接头验收</h3>
+          <p class="sub">近景清楚，但更像单端/未完整连接状态</p>
+          <ul><li>这张不是清点套筒数量，重点是看连接是否完整。</li><li>右侧未看到另一根钢筋进入套筒，像未完成连接或单端样件。</li><li>结论：可用于识别套筒位置和拍照样例，不能作为合格接头判断。</li></ul>
+          <img src="clear_review_assets/field-qc-0019_clear_review.jpg" alt="field-qc-0019清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0020｜只能定位，不能验收</h3>
+          <p class="sub">远景多接头，套筒太小</p>
+          <ul><li>画面里有多个接头，但单个接头细节太小。</li><li>能做“套筒定位/拍照引导”，不适合直接判露丝是否合规。</li><li>结论：需要逐个接头近景补拍。</li></ul>
+          <img src="clear_review_assets/field-qc-0020_clear_review.jpg" alt="field-qc-0020清晰复核板">
+        </article>
+        
+        <article class="card red">
+          <h3>field-qc-0021｜疑似露丝偏多，建议优先复核</h3>
+          <p class="sub">近景可看，局部露丝较明显</p>
+          <ul><li>中间接头右侧外露螺纹比较明显，肉眼看有超出常规2扣/2p口径的风险。</li><li>前景钢筋遮挡一部分边界，正式验收仍需正对、无遮挡近拍。</li><li>结论：可作为“异常预警样本”进入第一版交付。</li></ul>
+          <img src="clear_review_assets/field-qc-0021_clear_review.jpg" alt="field-qc-0021清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0022｜画面偏远，不能直接判</h3>
+          <p class="sub">多接头中远景，细节不足</p>
+          <ul><li>能看到若干套筒，但接头边界和外露螺纹细节不够清楚。</li><li>这类图适合做“自动发现接头位置”，不适合输出合格/不合格。</li><li>结论：需要补拍单个接头近景。</li></ul>
+          <img src="clear_review_assets/field-qc-0022_clear_review.jpg" alt="field-qc-0022清晰复核板">
+        </article>
+        
+        <article class="card red">
+          <h3>field-qc-0023｜疑似露丝偏多，建议优先复核</h3>
+          <p class="sub">近景较清楚，两侧露丝可见</p>
+          <ul><li>中间接头两侧均可见较明显外露螺纹，按通用口径有预警价值。</li><li>上方接头可见但部分边界受前景钢筋遮挡。</li><li>结论：可作为“异常预警样本”进入第一版交付。</li></ul>
+          <img src="clear_review_assets/field-qc-0023_clear_review.jpg" alt="field-qc-0023清晰复核板">
+        </article>
+        
+  </section>
+
+  <section>
+    <h2>二、钢筋材料点数，只接受端面照片</h2>
+    
+        <article class="card yellow">
+          <h3>field-qc-0015｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0015_clear_review.jpg" alt="field-qc-0015清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0016｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0016_clear_review.jpg" alt="field-qc-0016清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0017｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0017_clear_review.jpg" alt="field-qc-0017清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0018｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0018_clear_review.jpg" alt="field-qc-0018清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0024｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0024_clear_review.jpg" alt="field-qc-0024清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0025｜不能点数，需补拍</h3>
+          <p class="sub">侧面/遮挡视角不能作为最终数量</p>
+          <ul><li>材料点数只适合端面清楚、无遮挡、能看到每根端头的照片。</li><li>这张只能说明现场有一捆钢筋，不能输出可靠数量。</li><li>交付时应把这类图直接判为“拍照不合格”。</li></ul>
+          <img src="clear_review_assets/field-qc-0025_clear_review.jpg" alt="field-qc-0025清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0026｜候选点数：118，需复核</h3>
+          <p class="sub">0026可用，旧版5个已撤销</p>
+          <ul><li>这张是当前唯一适合做材料点数的照片。</li><li>已改为端面候选检测，当前圈出118个可见端面候选；旧版只识别5个是漏检，已撤销。</li><li>该结果仍需人工点核/补充标注后才能作为验收数量，不建议直接用于收料结算。</li></ul>
+          <img src="clear_review_assets/field-qc-0026_clear_review.jpg" alt="field-qc-0026清晰复核板">
+        </article>
+        
+  </section>
+
+  <section>
+    <h2>三、混凝土面表观初筛，只标疑似位置</h2>
+    
+        <article class="card yellow">
+          <h3>field-qc-0005｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出10处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下中区域：修补痕迹/表面补修疑似</li><li>上中区域：修补痕迹/表面补修疑似</li><li>中左区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0005_clear_review.jpg" alt="field-qc-0005清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0006｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出11处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下中区域：修补痕迹/表面补修疑似</li><li>上中区域：修补痕迹/表面补修疑似</li><li>上左区域：修补痕迹/表面补修疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0006_clear_review.jpg" alt="field-qc-0006清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0007｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出3处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>上中区域：修补痕迹/表面补修疑似</li><li>下中区域：修补痕迹/表面补修疑似</li><li>上右区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0007_clear_review.jpg" alt="field-qc-0007清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0008｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出3处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下中区域：修补痕迹/表面补修疑似</li><li>上右区域：修补痕迹/表面补修疑似</li><li>上中区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0008_clear_review.jpg" alt="field-qc-0008清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0009｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出4处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下中区域：色差/污染疑似</li><li>上中区域：修补痕迹/表面补修疑似</li><li>上中区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0009_clear_review.jpg" alt="field-qc-0009清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0010｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出3处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>上右区域：色差/污染疑似</li><li>上右区域：色差/污染疑似</li><li>上右区域：修补痕迹/表面补修疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0010_clear_review.jpg" alt="field-qc-0010清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0011｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出12处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下右区域：修补痕迹/表面补修疑似</li><li>下右区域：修补痕迹/表面补修疑似</li><li>中右区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0011_clear_review.jpg" alt="field-qc-0011清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0012｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出6处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>下中区域：修补痕迹/表面补修疑似</li><li>上中区域：修补痕迹/表面补修疑似</li><li>上右区域：修补痕迹/表面补修疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0012_clear_review.jpg" alt="field-qc-0012清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0013｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出12处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>上中区域：修补痕迹/表面补修疑似</li><li>下右区域：修补痕迹/表面补修疑似</li><li>下左区域：色差/污染疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0013_clear_review.jpg" alt="field-qc-0013清晰复核板">
+        </article>
+        
+        <article class="card yellow">
+          <h3>field-qc-0014｜疑似异常，待复核</h3>
+          <p class="sub">标位置，不直接判正式缺陷</p>
+          <ul><li>本图筛出11处疑似表观异常；这里只标最明显的前3处。</li><li>当前只能做“疑似位置提醒”，不能替代现场尺量和质量员定性。</li><li>如果要验收，需补充构件编号、近景、比例尺/靠尺、处理记录。</li><li>上左区域：色差/污染疑似</li><li>上中区域：修补痕迹/表面补修疑似</li><li>下右区域：修补痕迹/表面补修疑似</li></ul>
+          <img src="clear_review_assets/field-qc-0014_clear_review.jpg" alt="field-qc-0014清晰复核板">
+        </article>
+        
+  </section>
+</main>
+</body>
+</html>

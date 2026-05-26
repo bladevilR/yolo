@@ -1,0 +1,51 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "PPE demo: rerun strict v5",
+      "type": "shell",
+      "command": "D:\\python\\python.exe",
+      "args": [
+        "-m",
+        "data_factory.ppe_hybrid_demo",
+        "--weights",
+        "${workspaceFolder}\\runs\\detect\\station_ppe_20260519_codex_v2_3class\\weights\\best.pt",
+        "--images",
+        "${workspaceFolder}\\datasets\\station_ppe_20260519_codex_reviewed_yolo_v2_3class\\images\\test",
+        "--output",
+        "${workspaceFolder}\\outputs\\station_ppe_20260519_codex_v2_demo_vscode",
+        "--conf",
+        "0.2",
+        "--imgsz",
+        "1280"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Open strict v5 output folder",
+      "type": "shell",
+      "command": "explorer",
+      "args": [
+        "${workspaceFolder}\\outputs\\station_ppe_20260519_codex_v2_demo_strict_v5"
+      ],
+      "problemMatcher": []
+    },
+    {
+      "label": "Run tests",
+      "type": "shell",
+      "command": "D:\\python\\python.exe",
+      "args": [
+        "-m",
+        "pytest",
+        "tests"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

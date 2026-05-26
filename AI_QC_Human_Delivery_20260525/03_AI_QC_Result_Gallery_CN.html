@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI质监现场素材成果图册</title>
+  <style>
+    body { margin:0; font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif; color:#17202a; background:#f6f7f9; }
+    header { padding:32px 42px; background:#123b5d; color:#fff; }
+    header h1 { margin:0 0 8px; font-size:28px; }
+    header p { margin:4px 0; line-height:1.65; max-width:1080px; }
+    main { max-width:1180px; margin:0 auto; padding:26px 24px 56px; }
+    section { margin:24px 0 34px; }
+    h2 { margin:0 0 14px; font-size:22px; color:#123b5d; }
+    h3 { margin:0 0 10px; font-size:18px; }
+    .summary { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap:12px; margin:20px 0; }
+    .metric { background:#fff; border:1px solid #d8dee6; border-radius:8px; padding:16px; }
+    .metric b { display:block; font-size:24px; color:#0f6f5c; margin-bottom:4px; }
+    .note, .standards { background:#fff; border:1px solid #d8dee6; border-radius:8px; padding:16px 18px; line-height:1.75; }
+    .record { background:#fff; border:1px solid #d8dee6; border-radius:8px; padding:18px; margin:16px 0 22px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .verdict { display:inline-block; margin:0 0 10px; padding:5px 10px; border-radius:999px; background:#e8f3ee; color:#0f6f5c; font-weight:700; }
+    .record p { line-height:1.65; margin:8px 0; }
+    .record ol { margin:6px 0 12px 22px; line-height:1.7; }
+    .image-pair { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:14px; }
+    figure { margin:0; background:#fafafa; border:1px solid #e4e8ee; border-radius:6px; padding:8px; }
+    img { width:100%; height:auto; display:block; border-radius:4px; }
+    figcaption { text-align:center; color:#5f6b76; font-size:13px; margin-top:6px; }
+    a { color:#0c5f99; }
+    @media (max-width: 760px) {
+      header { padding:24px 20px; }
+      main { padding:18px 14px 42px; }
+      .summary { grid-template-columns:1fr 1fr; }
+      .image-pair { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <h1>AI质监现场素材成果图册</h1>
+  <p>生成时间：2026-05-25。目的：把现场调研照片转成可复核、可验收的中文成果，而不是只给算法CSV。</p>
+  <p>重要说明：当前为规则+视觉启发式验证版，结论用于会议评估和现场复核，不替代正式验收记录。</p>
+</header>
+<main>
+  <section class="summary">
+    <div class="metric"><b>7</b>钢筋计数图片</div>
+    <div class="metric"><b>1</b>张可输出候选数量</div>
+    <div class="metric"><b>5</b>套筒露丝图片，其中3张预警</div>
+    <div class="metric"><b>75</b>处混凝土疑似区域</div>
+  </section>
+
+  <section class="note">
+    <h2>当前总判断</h2>
+    <p><b>钢筋数量识别：</b>现有7张里6张为侧面/遮挡视角，不能直接作为最终数量；1张端面图识别到5个端面点位，但仍需人工复核。要快速交付，必须把“端面拍照规范”作为验收前置条件。</p>
+    <p><b>钢筋套筒露丝：</b>可做快速交付。按通用2扣/2p口径，本批5张中多张出现单侧露丝明显超过阈值的预警，适合先做“红黄绿+人工复核”版本。</p>
+    <p><b>混凝土面检查：</b>可做表观异常初筛。当前10张共筛出75处疑似区域，主要是修补痕迹、色差/污染、麻面/起砂疑似；缺陷性质和严重程度仍要结合构件位置、尺寸测量和现场处理记录确认。</p>
+  </section>
+
+  <section class="standards">
+    <h2>默认规范依据</h2>
+    <ul><li><a href="https://www.codeofchina.com/standard/JGJ107-2016.html">JGJ 107-2016《钢筋机械连接技术规程》</a>：用于套筒/机械连接接头的安装、现场检验和验收框架。</li><li><a href="https://www.lengjiyataotong.com/taotongxw/251.html">JGJ 107-2016 第6.3.1条相关公开摘录</a>：直螺纹标准型、正反丝型、异径型接头安装后单侧外露螺纹不宜超过2p。</li><li><a href="https://www.zbl.cn/uploadfile/2020/0812/20200812111624347.pdf">GB 50204-2015《混凝土结构工程施工质量验收规范》</a>：用于现浇结构外观质量缺陷分类，包含露筋、蜂窝、孔洞、夹渣、疏松、裂缝、连接部位缺陷、外形缺陷、外表缺陷等。</li></ul>
+    <p>落地口径：套筒露丝先按单侧≤2扣/2p做预警；混凝土面按GB 50204-2015的外观质量缺陷类别输出“疑似类型+位置+待复核”。材料点数本身不是规范合格项，需与项目收料单、施工图或进场验收记录对齐。</p>
+  </section>
+
+  <section>
+    <h2>一、钢筋进场数量识别</h2>
+    
+            <article class="record">
+              <h3>field-qc-0015｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0015_original.jpg" alt="field-qc-0015原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0015_annotated.jpg" alt="field-qc-0015标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0016｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0016_original.jpg" alt="field-qc-0016原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0016_annotated.jpg" alt="field-qc-0016标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0017｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0017_original.jpg" alt="field-qc-0017原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0017_annotated.jpg" alt="field-qc-0017标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0018｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0018_original.jpg" alt="field-qc-0018原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0018_annotated.jpg" alt="field-qc-0018标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0024｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0024_original.jpg" alt="field-qc-0024原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0024_annotated.jpg" alt="field-qc-0024标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0025｜钢筋进场数量识别</h3>
+              <p class="verdict">需补拍后再判定</p>
+              <p><b>数量输出：</b>0 个；<b>置信度：</b>0.0</p>
+              <p><b>结论：</b>不能作为最终数量；当前图为侧面/遮挡视角，必须补拍端面后再自动计数。</p>
+              <p><b>采集/复核提示：</b>遮挡较多；需要端面照片才能精确计数；side_view_not_exact_count</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0025_original.jpg" alt="field-qc-0025原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0025_annotated.jpg" alt="field-qc-0025标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0026｜钢筋进场数量识别</h3>
+              <p class="verdict">需人工复核</p>
+              <p><b>数量输出：</b>118 个；<b>置信度：</b>0.746</p>
+              <p><b>结论：</b>当前候选检测到 118 个可见端面点位；旧版“5个”已撤销。该结果仍需人工点核/补充标注后才能作为验收数量。</p>
+              <p><b>采集/复核提示：</b>high_density_count_requires_manual_review</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0026_original.jpg" alt="field-qc-0026原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0026_annotated.jpg" alt="field-qc-0026标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+  </section>
+
+  <section>
+    <h2>二、钢筋套筒露丝合规检查</h2>
+    
+            <article class="record">
+              <h3>field-qc-0019｜钢筋套筒露丝合规检查</h3>
+              <p class="verdict">初判合规但需人工确认</p>
+              <p><b>露丝数量输出：</b>左侧约 0 扣，右侧约 2 扣。</p>
+              <p><b>判断依据：</b>按通用口径单侧不超过2扣，当前左右约为0/2扣。</p>
+              <p><b>复核提示：</b>未配置项目露丝阈值，已按通用2p口径补充判断</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0019_original.jpg" alt="field-qc-0019原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0019_annotated.jpg" alt="field-qc-0019标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0020｜钢筋套筒露丝合规检查</h3>
+              <p class="verdict">初判不合规/需整改复核</p>
+              <p><b>露丝数量输出：</b>左侧约 5 扣，右侧约 24 扣。</p>
+              <p><b>判断依据：</b>按通用口径单侧不超过2扣，当前最大单侧约24扣。</p>
+              <p><b>复核提示：</b>遮挡较多；套筒两端未完全清晰；未配置项目露丝阈值，已按通用2p口径补充判断</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0020_original.jpg" alt="field-qc-0020原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0020_annotated.jpg" alt="field-qc-0020标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0021｜钢筋套筒露丝合规检查</h3>
+              <p class="verdict">初判不合规/需整改复核</p>
+              <p><b>露丝数量输出：</b>左侧约 3 扣，右侧约 6 扣。</p>
+              <p><b>判断依据：</b>按通用口径单侧不超过2扣，当前最大单侧约6扣。</p>
+              <p><b>复核提示：</b>未配置项目露丝阈值，已按通用2p口径补充判断</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0021_original.jpg" alt="field-qc-0021原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0021_annotated.jpg" alt="field-qc-0021标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0022｜钢筋套筒露丝合规检查</h3>
+              <p class="verdict">初判合规但需人工确认</p>
+              <p><b>露丝数量输出：</b>左侧约 2 扣，右侧约 0 扣。</p>
+              <p><b>判断依据：</b>按通用口径单侧不超过2扣，当前左右约为2/0扣。</p>
+              <p><b>复核提示：</b>遮挡较多；套筒两端未完全清晰；未配置项目露丝阈值，已按通用2p口径补充判断</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0022_original.jpg" alt="field-qc-0022原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0022_annotated.jpg" alt="field-qc-0022标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0023｜钢筋套筒露丝合规检查</h3>
+              <p class="verdict">初判不合规/需整改复核</p>
+              <p><b>露丝数量输出：</b>左侧约 14 扣，右侧约 12 扣。</p>
+              <p><b>判断依据：</b>按通用口径单侧不超过2扣，当前最大单侧约14扣。</p>
+              <p><b>复核提示：</b>未配置项目露丝阈值，已按通用2p口径补充判断</p>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0023_original.jpg" alt="field-qc-0023原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0023_annotated.jpg" alt="field-qc-0023标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+  </section>
+
+  <section>
+    <h2>三、混凝土面表观缺陷筛查</h2>
+    
+            <article class="record">
+              <h3>field-qc-0005｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>10 处。</p>
+              <p><b>结论：</b>共筛出 10 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,3432)-(3067,4091)</li><li>2. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(319,0)-(3067,400)</li><li>3. 中部左侧：色差/污染/泛白，置信度0.90，像素框(105,1097)-(1242,1702)</li><li>4. 上部左侧：修补痕迹/表面补修色差，置信度0.61，像素框(0,0)-(278,360)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0005_original.jpg" alt="field-qc-0005原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0005_annotated.jpg" alt="field-qc-0005标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0006｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>11 处。</p>
+              <p><b>结论：</b>共筛出 11 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,3468)-(3067,4091)</li><li>2. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(319,0)-(3067,446)</li><li>3. 上部左侧：修补痕迹/表面补修色差，置信度0.61，像素框(0,0)-(282,355)</li><li>4. 中部左侧：色差/污染/泛白，置信度0.55，像素框(328,1242)-(482,1611)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0006_original.jpg" alt="field-qc-0006原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0006_annotated.jpg" alt="field-qc-0006标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0007｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>3 处。</p>
+              <p><b>结论：</b>共筛出 3 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,0)-(3067,546)</li><li>2. 下部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,3686)-(3067,4091)</li><li>3. 上部右侧：色差/污染/泛白，置信度0.53，像素框(2858,523)-(3067,715)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0007_original.jpg" alt="field-qc-0007原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0007_annotated.jpg" alt="field-qc-0007标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0008｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>3 处。</p>
+              <p><b>结论：</b>共筛出 3 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,3272)-(3067,4091)</li><li>2. 上部右侧：修补痕迹/表面补修色差，置信度0.57，像素框(2803,0)-(3067,287)</li><li>3. 上部中部：色差/污染/泛白，置信度0.55，像素框(1866,86)-(2189,273)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0008_original.jpg" alt="field-qc-0008原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0008_annotated.jpg" alt="field-qc-0008标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0009｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>4 处。</p>
+              <p><b>结论：</b>共筛出 4 处疑似区域，主要类型为：色差/污染/泛白。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部中部：色差/污染/泛白，置信度0.90，像素框(0,3336)-(3067,4091)</li><li>2. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,0)-(3067,259)</li><li>3. 上部中部：色差/污染/泛白，置信度0.54，像素框(1839,364)-(2134,532)</li><li>4. 上部右侧：修补痕迹/表面补修色差，置信度0.53，像素框(2958,341)-(3067,537)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0009_original.jpg" alt="field-qc-0009原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0009_annotated.jpg" alt="field-qc-0009标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0010｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>3 处。</p>
+              <p><b>结论：</b>共筛出 3 处疑似区域，主要类型为：色差/污染/泛白。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 上部右侧：色差/污染/泛白，置信度0.58，像素框(3022,0)-(4091,123)</li><li>2. 上部右侧：色差/污染/泛白，置信度0.58，像素框(3136,118)-(3541,346)</li><li>3. 上部右侧：修补痕迹/表面补修色差，置信度0.53，像素框(3928,168)-(4091,319)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0010_original.jpg" alt="field-qc-0010原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0010_annotated.jpg" alt="field-qc-0010标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0011｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>12 处。</p>
+              <p><b>结论：</b>共筛出 12 处疑似区域，主要类型为：色差/污染/泛白。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部右侧：修补痕迹/表面补修色差，置信度0.90，像素框(3145,2503)-(4091,2972)</li><li>2. 下部右侧：修补痕迹/表面补修色差，置信度0.85，像素框(3463,1952)-(4091,2448)</li><li>3. 中部右侧：色差/污染/泛白，置信度0.69，像素框(3204,1411)-(3827,1757)</li><li>4. 上部右侧：色差/污染/泛白，置信度0.59，像素框(3363,0)-(3573,482)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0011_original.jpg" alt="field-qc-0011原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0011_annotated.jpg" alt="field-qc-0011标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0012｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>6 处。</p>
+              <p><b>结论：</b>共筛出 6 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 下部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,2552)-(4075,3055)</li><li>2. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(580,0)-(4075,499)</li><li>3. 上部右侧：修补痕迹/表面补修色差，置信度0.60，像素框(3604,467)-(4075,698)</li><li>4. 上部左侧：色差/污染/泛白，置信度0.59，像素框(14,68)-(440,349)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0012_original.jpg" alt="field-qc-0012原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0012_annotated.jpg" alt="field-qc-0012标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0013｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>12 处。</p>
+              <p><b>结论：</b>共筛出 12 处疑似区域，主要类型为：修补痕迹/表面补修色差。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(0,0)-(4075,793)</li><li>2. 下部右侧：修补痕迹/表面补修色差，置信度0.82，像素框(1831,2929)-(4075,3055)</li><li>3. 下部左侧：色差/污染/泛白，置信度0.57，像素框(0,2938)-(757,3055)</li><li>4. 上部左侧：色差/污染/泛白，置信度0.56，像素框(141,431)-(485,703)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0013_original.jpg" alt="field-qc-0013原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0013_annotated.jpg" alt="field-qc-0013标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+            <article class="record">
+              <h3>field-qc-0014｜混凝土面表观缺陷筛查</h3>
+              <p class="verdict">发现疑似表观异常，需现场复核</p>
+              <p><b>疑似缺陷数量输出：</b>11 处。</p>
+              <p><b>结论：</b>共筛出 11 处疑似区域，主要类型为：色差/污染/泛白。</p>
+              <p><b>主要疑似位置：</b></p>
+              <ol><li>1. 上部左侧：色差/污染/泛白，置信度0.90，像素框(0,0)-(1861,833)</li><li>2. 上部中部：修补痕迹/表面补修色差，置信度0.90，像素框(1752,0)-(2717,428)</li><li>3. 下部右侧：修补痕迹/表面补修色差，置信度0.74，像素框(3568,2476)-(4091,2972)</li><li>4. 下部中部：色差/污染/泛白，置信度0.68，像素框(2144,2499)-(2772,2963)</li></ol>
+              
+    <div class="image-pair">
+      <figure><img src="gallery_assets/field-qc-0014_original.jpg" alt="field-qc-0014原图"><figcaption>原图</figcaption></figure>
+      <figure><img src="gallery_assets/field-qc-0014_annotated.jpg" alt="field-qc-0014标注图"><figcaption>标注图</figcaption></figure>
+    </div>
+    
+            </article>
+            
+  </section>
+</main>
+</body>
+</html>
