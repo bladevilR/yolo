@@ -16,6 +16,7 @@ from ultralytics import YOLO
 
 
 DEFAULT_TARGET_CLASSES = ["person", "head", "helmet", "vest", "no_helmet", "no_vest"]
+DEFAULT_WORLD_CLASSES = ["person", "hard hat", "safety helmet", "safety vest", "reflective vest"]
 
 
 CLASS_ALIASES = {
@@ -86,6 +87,7 @@ def prelabel_images(
     images_root: Path,
     output_labels: Path,
     target_classes: Sequence[str],
+    model_classes: Sequence[str] | None = None,
     conf: float = 0.2,
     imgsz: int = 1280,
     batch: int = 8,
@@ -94,6 +96,10 @@ def prelabel_images(
     image_paths = iter_images(images_root)
     output_labels.mkdir(parents=True, exist_ok=True)
     model = YOLO(str(model_path))
+    if model_classes:
+        if not hasattr(model, "set_classes"):
+            raise RuntimeError(f"Model does not support custom class prompts: {model_path}")
+        model.set_classes(list(model_classes))
     class_counts: Counter[str] = Counter()
     rows: list[dict[str, Any]] = []
 
@@ -154,12 +160,26 @@ def parse_classes(raw: str) -> list[str]:
     return classes
 
 
+def parse_optional_classes(raw: str | None) -> list[str] | None:
+    if raw is None or not raw.strip():
+        return None
+    return parse_classes(raw)
+
+
 def build_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--model", required=True, type=Path)
     parser.add_argument("--images", required=True, type=Path)
     parser.add_argument("--output-labels", required=True, type=Path)
     parser.add_argument("--classes", default=",".join(DEFAULT_TARGET_CLASSES))
+    parser.add_argument(
+        "--model-classes",
+        default=None,
+        help=(
+            "Optional comma-separated prompt classes for YOLO-World style models. "
+            f"Example: {','.join(DEFAULT_WORLD_CLASSES)}"
+        ),
+    )
     parser.add_argument("--conf", type=float, default=0.2)
     parser.add_argument("--imgsz", type=int, default=1280)
     parser.add_argument("--batch", type=int, default=8)
@@ -174,6 +194,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         images_root=args.images,
         output_labels=args.output_labels,
         target_classes=parse_classes(args.classes),
+        model_classes=parse_optional_classes(args.model_classes),
         conf=args.conf,
         imgsz=args.imgsz,
         batch=args.batch,

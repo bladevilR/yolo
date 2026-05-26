@@ -1,0 +1,44 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "PPE demo: rerun strict v5",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "data_factory.ppe_hybrid_demo",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "args": [
+        "--weights",
+        "${workspaceFolder}\\runs\\detect\\station_ppe_20260519_codex_v2_3class\\weights\\best.pt",
+        "--images",
+        "${workspaceFolder}\\datasets\\station_ppe_20260519_codex_reviewed_yolo_v2_3class\\images\\test",
+        "--output",
+        "${workspaceFolder}\\outputs\\station_ppe_20260519_codex_v2_demo_vscode",
+        "--conf",
+        "0.2",
+        "--imgsz",
+        "1280"
+      ]
+    },
+    {
+      "name": "PPE review queue: build workspace",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "data_factory.ppe_review_queue",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "args": [
+        "--queue-csv",
+        "${workspaceFolder}\\outputs\\station_ppe_20260519_codex_v2_demo_strict_v5\\ppe_review_queue.csv",
+        "--images-root",
+        "${workspaceFolder}\\datasets\\station_ppe_20260519_codex_reviewed_yolo_v2_3class\\images\\test",
+        "--labels-root",
+        "${workspaceFolder}\\datasets\\station_ppe_20260519_codex_reviewed_yolo_v2_3class\\labels\\test",
+        "--output",
+        "${workspaceFolder}\\datasets\\station_ppe_20260520_review_queue_v5_workspace",
+        "--force"
+      ]
+    }
+  ]
+}

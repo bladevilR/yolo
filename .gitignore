@@ -8,6 +8,8 @@ __pycache__/
 runs/
 datasets/
 PPE/
+outputs/
+material_eval_output/
 专业照片/
 
 # Large model/data artifacts
@@ -33,3 +35,4 @@ PPE/
 nul
 *.tmp
 *.log
+.local/

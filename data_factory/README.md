@@ -80,3 +80,23 @@ python -m data_factory.render_yolo_labels \
 
 Existing pseudo labels are drafts only. Stop for human review before promoting
 them into the official `labels` tree or training as if they were verified labels.
+
+Create an editable label-review workspace from a priority queue:
+
+```bash
+python -m data_factory.label_review workspace \
+  --priority-package M:\yolo\datasets\station_ppe_20260519_priority_label_fix_v1 \
+  --output M:\yolo\datasets\station_ppe_20260519_priority_label_fix_v1_review_workspace
+```
+
+Edit labels in `labels_reviewed`, keep `labels_pseudo_original` unchanged, and
+mark completed rows as `done` in `labeling_queue.csv`.
+
+Promote corrected labels into a trainable YOLO dataset:
+
+```bash
+python -m data_factory.label_review promote \
+  --review-workspace M:\yolo\datasets\station_ppe_20260519_priority_label_fix_v1_review_workspace \
+  --output M:\yolo\datasets\station_ppe_20260519_reviewed_yolo_v1 \
+  --require-status done
+```

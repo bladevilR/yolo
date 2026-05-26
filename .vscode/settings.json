@@ -1,0 +1,12 @@
+{
+  "python.defaultInterpreterPath": "D:\\python\\python.exe",
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}"
+  ],
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "terminal.integrated.cwd": "${workspaceFolder}",
+  "files.encoding": "utf8"
+}

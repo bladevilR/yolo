@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>XCreator Local Clone Smoke Page</title>
+  <style>
+    body { margin: 0; font-family: Arial, "Microsoft YaHei", sans-serif; background: #f6f7f9; color: #172033; }
+    header { padding: 14px 20px; background: #16324f; color: #fff; font-weight: 700; }
+    main { max-width: 960px; margin: 24px auto; background: #fff; border: 1px solid #d9dee8; padding: 20px; }
+    .form-row { display: grid; grid-template-columns: 140px 1fr; gap: 12px; align-items: center; margin: 12px 0; }
+    input, textarea { padding: 8px; border: 1px solid #c7cedb; }
+    .toolbar { display: flex; gap: 10px; margin-top: 18px; }
+    button { padding: 8px 12px; border: 1px solid #9aa7b8; background: #fff; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <header>非生产本地克隆页 - OCR/知识助手冒烟测试</header>
+  <main>
+    <h1>证件信息详情表单页面</h1>
+    <div class="form-row" data-label="证件名称">
+      <label for="certificateName">证件名称</label>
+      <input id="certificateName" name="certificateName">
+    </div>
+    <div class="form-row" data-label="证件编号">
+      <label for="certificateNum">证件编号</label>
+      <input id="certificateNum" name="certificateNum">
+    </div>
+    <div class="form-row" data-label="核发日期">
+      <label for="issueDate">核发日期</label>
+      <input id="issueDate" name="issueDate">
+    </div>
+    <div class="form-row" data-label="证件附件">
+      <label for="certificateAttachment">证件附件</label>
+      <input id="certificateAttachment" name="certificateAttachment" type="file" data-xc-upload="certificateAttachment">
+    </div>
+    <div id="ocrReviewMount"></div>
+    <div class="toolbar">
+      <button type="button" data-xc-role="save">保存</button>
+      <button type="button" data-xc-role="submit">提交</button>
+      <button type="button" id="runOcrDraft">模拟 OCR 草稿</button>
+    </div>
+  </main>
+  <script src="../static/xcreator-loader.js"></script>
+  <script>
+    window.Global = {
+      tenantCode: "platform",
+      appCode: "aji0nnjl",
+      pageCode: "certificateInfotest1Form",
+      pageId: "2f596471-0d6a-463f-a394-385b260a4ee8"
+    };
+    var mappings = {
+      name: { targetType: "widgetId", target: "certificateName" },
+      number: { targetType: "widgetId", target: "certificateNum" },
+      issueDate: { targetType: "widgetId", target: "issueDate" }
+    };
+    window.XCreatorAssistantOcrLoader.init({
+      config: {
+        assistant: {
+          enabled: true,
+          mode: "stub",
+          entry: "floating",
+          title: "知识助手",
+          placeholder: "输入测试问题"
+        }
+      }
+    });
+    document.getElementById("runOcrDraft").addEventListener("click", function () {
+      window.XCreatorAssistantOcrLoader.renderOcrReview(
+        document.getElementById("ocrReviewMount"),
+        {
+          fields: {
+            name: { normalized: "测试证件", confidence: 0.98 },
+            number: { normalized: "ZJ-TEST-001", confidence: 0.97 },
+            issueDate: { normalized: "2026-05-25", confidence: 0.92 }
+          }
+        },
+        mappings
+      );
+    });
+  </script>
+</body>
+</html>

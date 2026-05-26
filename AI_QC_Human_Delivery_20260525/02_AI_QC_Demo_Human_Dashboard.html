@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><title>AI质监 Demo 交付说明</title><style>
+body{margin:0;background:#f5f7fb;color:#1f2937;font-family:"Microsoft YaHei",Arial,sans-serif;line-height:1.65}main{max-width:1120px;margin:0 auto;padding:34px 28px 60px}h1{background:#14324a;color:white;margin:-34px -28px 28px;padding:32px 40px;font-size:30px}h2{margin-top:28px;color:#17456c;border-bottom:2px solid #d8e4ef;padding-bottom:6px}.shot{display:block;max-width:900px;width:100%;margin:14px auto;border:1px solid #cad5e2;border-radius:8px;background:white;box-shadow:0 4px 16px rgba(20,50,74,.08)}table{width:100%;border-collapse:collapse;background:white;margin:12px 0 20px;box-shadow:0 3px 12px rgba(20,50,74,.05)}th,td{border:1px solid #d6dee9;padding:10px 12px;text-align:left;vertical-align:top}th{background:#eef2f7;color:#17324d}.bullet{margin-left:24px}.note{background:#fff7ed;border-left:5px solid #d97706;padding:12px}.footer{color:#64748b;font-size:13px;margin-top:30px}
+</style></head><body><main><h1>AI质监 Demo 交付说明</h1>
+<p>给领导和建设公司看的版本，不是开发调试数据。</p>
+<h2>一句话结论</h2>
+<p>本轮已经形成可演示的现场 AI 质检辅助 Demo。系统可以完成素材归类、拍照质量检查、标注图生成、结构化结果输出和人工复核状态标记。</p>
+<p>但当前交付目标不是“自动验收合格/不合格”，而是“辅助质检 Demo + 现场补样 + 规则确认”。CSV/JSON 只作为底层证据链，不应该作为主要汇报材料。</p>
+<h2>这次到底交付了什么</h2>
+<table>
+<tr><th>交付物</th><th>给谁看</th><th>打开后能看懂什么</th></tr>
+<tr><td>领导汇报版 Word</td><td>领导、项目负责人、建设公司</td><td>实现了哪些 AI 质检场景、现场跑出来什么、怎么验收、哪些不能承诺。</td></tr>
+<tr><td>中文图文看板 HTML</td><td>会议演示、内部讨论</td><td>三类场景的代表标注图、中文结论、验收边界和下一步。</td></tr>
+<tr><td>底层 CSV/JSON</td><td>开发、复核、留痕</td><td>机器结果和证据链。不是面向领导的正文交付物。</td></tr>
+</table>
+<h2>已经实现的能力</h2>
+<table>
+<tr><th>场景</th><th>现在能做什么</th><th>当前现场结果</th><th>验收边界</th></tr>
+<tr><td>钢筋材料点数</td><td>识别端面清晰照片中的钢筋端面候选点，输出标注图、候选数量、置信度和复核状态。</td><td>材料相关 7 张：6 张需要补拍，1 张需要人工复核。</td><td>只验收端面清晰照片；侧面、遮挡、裁切照片不能当精确数量。</td></tr>
+<tr><td>钢筋套筒露丝检查</td><td>定位套筒和左右露丝区域，估算左右可见丝扣，支持阈值配置。</td><td>套筒 5 张全部生成标注图；因项目露丝阈值未确认，全部为“需确认标准”。</td><td>未确认项目阈值前不输出合格/不合格；无比例尺不报毫米级外露长度。</td></tr>
+<tr><td>混凝土表面疑似异常</td><td>圈选疑似异常区域，输出标注图、异常提示和测量状态。</td><td>混凝土 10 张全部生成疑似区域标注。</td><td>当前只验收“疑似异常提示”；不承诺蜂窝、麻面、裂缝等具体缺陷精判。</td></tr>
+<tr><td>通用流程</td><td>素材归类、拍照质量检查、复核状态、报告生成。</td><td>共 27 个媒体文件；14 个可进入分析，7 个需复核，6 个需补拍。</td><td>这是辅助质检流程，不替代质检员最终验收签字。</td></tr>
+</table>
+<h2>场景一：钢筋材料点数</h2>
+<img class="shot" src="assets/steel_count_candidate.jpg" alt="demo image">
+<p>当前实现：</p>
+<p class="bullet">&#8226; 能识别端面照片中的钢筋端面候选点。</p>
+<p class="bullet">&#8226; 能输出标注图、候选数量、置信度和人工复核状态。</p>
+<p class="bullet">&#8226; 对侧面堆放、遮挡严重、裁切严重的照片，会标记为需要补拍或人工复核。</p>
+<p>现场结果：</p>
+<p class="bullet">&#8226; 当前 7 张材料相关照片中，6 张是侧面或遮挡视角，系统标记为需要补拍。</p>
+<p class="bullet">&#8226; 1 张端面图可以生成候选点，但由于候选区域不够稳定，系统标记为需要人工复核。</p>
+<p>验收方式：</p>
+<p class="bullet">&#8226; 通过：端面清晰、钢筋端头完整，系统能输出标注图和候选数量。</p>
+<p class="bullet">&#8226; 不通过：侧面堆放照片还直接输出精确点数。</p>
+<p>下一步：</p>
+<p class="bullet">&#8226; 现场补拍端面照片。</p>
+<p class="bullet">&#8226; 和建设公司确认点数口径：按根、按捆、按批次，还是按收料单明细行。</p>
+<h2>场景二：钢筋套筒露丝检查</h2>
+<img class="shot" src="assets/coupler_thread_candidate.jpg" alt="demo image">
+<p>当前实现：</p>
+<p class="bullet">&#8226; 能定位套筒大致位置。</p>
+<p class="bullet">&#8226; 能标出左侧、右侧露丝区域。</p>
+<p class="bullet">&#8226; 能估算左右可见丝扣数量。</p>
+<p class="bullet">&#8226; 支持配置最大允许露丝数阈值。</p>
+<p class="bullet">&#8226; 如果阈值未配置，系统只输出“需确认标准”，不输出合格/不合格。</p>
+<p>现场结果：</p>
+<p class="bullet">&#8226; 当前 5 张套筒照片都生成了标注图和左右露丝估计。</p>
+<p class="bullet">&#8226; 因为项目露丝标准尚未确认，5 张全部为“需确认标准”。</p>
+<p class="bullet">&#8226; 有照片存在遮挡或两侧不完整，系统会额外提示“套筒两侧未完整可见”或“存在遮挡”。</p>
+<p>验收方式：</p>
+<p class="bullet">&#8226; 通过：能标出套筒和左右露丝区域；配置阈值后可以输出疑似不合规。</p>
+<p class="bullet">&#8226; 不通过：没有项目阈值就直接判合格/不合格。</p>
+<p>下一步：</p>
+<p class="bullet">&#8226; 建设公司确认不同钢筋直径、套筒类型下允许外露几扣或多少毫米。</p>
+<p class="bullet">&#8226; 如果要求长度测量，需要现场放比例尺或提供固定标定方式。</p>
+<h2>场景三：混凝土表面疑似异常</h2>
+<img class="shot" src="assets/concrete_surface_candidate.jpg" alt="demo image">
+<p>当前实现：</p>
+<p class="bullet">&#8226; 能圈选混凝土表面疑似异常区域。</p>
+<p class="bullet">&#8226; 支持 overview 和 close-up 图片关联。</p>
+<p class="bullet">&#8226; 输出异常提示、标注图、人工复核状态。</p>
+<p class="bullet">&#8226; 没有比例尺时，不输出宽度、长度或面积。</p>
+<p>现场结果：</p>
+<p class="bullet">&#8226; 当前 10 张混凝土照片都生成了疑似区域标注。</p>
+<p class="bullet">&#8226; 当前照片主要是正常表面、色差、修补痕迹、接缝、水印等。</p>
+<p class="bullet">&#8226; 缺少明确的蜂窝、麻面、露筋、孔洞、裂缝等正样本。</p>
+<p>验收方式：</p>
+<p class="bullet">&#8226; 通过：能圈出疑似异常区域，并提示人工复核。</p>
+<p class="bullet">&#8226; 不通过：把疑似区域直接判成蜂窝、麻面、裂缝等最终缺陷结论。</p>
+<p>下一步：</p>
+<p class="bullet">&#8226; 补充蜂窝、麻面、露筋、孔洞、裂缝等正样本。</p>
+<p class="bullet">&#8226; 有足够样本后，再做具体缺陷类别模型。</p>
+<h2>怎么验收</h2>
+<table>
+<tr><th>验收项</th><th>验收方法</th><th>通过标准</th></tr>
+<tr><td>技术验收</td><td>运行单元测试和 OpenSpec 校验。</td><td>36 个测试通过；OpenSpec strict 校验 valid。</td></tr>
+<tr><td>图像结果验收</td><td>打开 Word 或 HTML，看三类场景标注图。</td><td>能看懂标注含义，且错误边界写清楚。</td></tr>
+<tr><td>业务验收</td><td>建设公司确认点数口径、套筒露丝阈值、是否接受补拍规范。</td><td>确认后才能进入“试点验收版”。</td></tr>
+<tr><td>反向验收</td><td>检查系统有没有过度承诺。</td><td>未确认阈值不判合格；无比例尺不报尺寸；侧面钢筋不报精确数量。</td></tr>
+</table>
+<h2>会议必须确认</h2>
+<table>
+<tr><th>问题</th><th>建议问法</th><th>为什么重要</th></tr>
+<tr><td>钢筋点数口径</td><td>AI 输出的数量是按根、按捆、按批次，还是对照收料单明细行？</td><td>不确认口径，就无法判断 AI 数量是否可用于收料或库存核对。</td></tr>
+<tr><td>套筒露丝阈值</td><td>不同钢筋直径、套筒类型，允许外露几扣或多少毫米？以哪本规范或项目标准为准？</td><td>没有阈值只能做辅助定位，不能判合格/不合格。</td></tr>
+<tr><td>拍照规范</td><td>是否接受要求现场按端面、完整套筒两侧、overview + close-up、带比例尺等规则补拍？</td><td>AI 能力很大程度取决于照片角度和尺度信息。</td></tr>
+<tr><td>交付形态</td><td>第一阶段要离线脚本、本地网页、H5 上传、Android APK，还是 iOS？</td><td>iOS 原生 App 分发周期长，不适合做第一轮快速试点前置条件。</td></tr>
+</table>
+<h2>接下来要做什么</h2>
+<table>
+<tr><th>时间点</th><th>要做的事</th><th>谁来确认</th></tr>
+<tr><td>会前</td><td>挑每个场景 2 到 3 张代表图片，准备原图、标注图、中文结论。</td><td>内部项目组</td></tr>
+<tr><td>会上</td><td>确认钢筋点数口径、套筒露丝阈值、拍照规范、交付形态。</td><td>建设公司/质检负责人</td></tr>
+<tr><td>会后 1 周</td><td>按拍照规范补样，每类至少补 50 到 100 张有效图，包含正常和异常。</td><td>现场人员和质检员</td></tr>
+<tr><td>下一版 Demo</td><td>把规则写入配置，输出更接近验收流程的复核清单。</td><td>技术组和质检负责人</td></tr>
+<tr><td>产品化</td><td>优先 H5 或本地网页；Android 可作为快速 App 路线；iOS 后置。</td><td>领导决策</td></tr>
+</table>
+<h2>对领导建议怎么说</h2>
+<p>可以这样说：</p>
+<p class="bullet">&#8226; 三个场景已经形成可运行 Demo。</p>
+<p class="bullet">&#8226; 当前能输出标注图、结构化结果和人工复核状态。</p>
+<p class="bullet">&#8226; 适合先做辅助质检、补样和规则确认。</p>
+<p class="bullet">&#8226; 套筒露丝必须先确认项目阈值，再进入合格/不合格判断。</p>
+<p>不要这样说：</p>
+<p class="bullet">&#8226; 已经能自动完成正式质量验收。</p>
+<p class="bullet">&#8226; 混凝土缺陷已经能稳定分类。</p>
+<p class="bullet">&#8226; 钢筋侧面堆放照片可以精确点数。</p>
+<p class="bullet">&#8226; 套筒露丝不用确认标准就能判定。</p>
+<h2>推荐结论</h2>
+<p>当前项目具备继续推进价值。下一阶段建议定义为“辅助质检 Demo + 现场补样 + 规则确认”，先跑通拍照规范、业务阈值和人工复核流程，再决定是否产品化到 H5、Android 或 iOS。</p><div class="footer">但当前交付目标不是“自动验收合格/不合格”，而是“辅助质检 Demo + 现场补样 + 规则确认”。CSV/JSON 只作为底层证据链，不应该作为主要汇报材料。</div></main></body></html>
